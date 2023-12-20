@@ -13,4 +13,9 @@ Para mapagana to:
     - In another terminal, type ` npm run dev `
 
 4. Open html
-    - use five server or kung pano kayo magbukas ng html ang src/index.html
+    - use five server or kung pano kayo magbukas ng html ang frontend/src/index.html
+
+5. Paganahin Tailwind
+    - in terminal, type `cd frontend`, `npm install -D tailwindcss` 
+    ` npx tailwindcss -i ./frontend/src/input.css -o ./frontend/dist/output.css --watch `
+    - Dapat maging pula ang kulay ng title para makita kung gumagana ang tailwind
