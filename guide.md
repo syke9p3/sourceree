@@ -14,3 +14,6 @@ Para mapagana to:
 
 4. Open html
     - use five server or kung pano kayo magbukas ng html ang src/index.html
+
+5. Paganahin Tailwind
+    - in terminal, type  ` npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch `  
