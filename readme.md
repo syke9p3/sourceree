@@ -10,6 +10,7 @@ Para mapagana to:
     - gamitin yung *employees.sql* sa data folder
 
 3. Open server
+    - Make sure na nakabukas ang xampp as admin and apache/mysql running
     - In another terminal, type ` npm run dev `
 
 4. Open html
@@ -19,3 +20,13 @@ Para mapagana to:
     - in terminal, type `cd frontend`, `npm install -D tailwindcss` 
     ` npx tailwindcss -i ./frontend/src/input.css -o ./frontend/dist/output.css --watch `
     - Dapat maging pula ang kulay ng title para makita kung gumagana ang tailwind
+
+# Update
+
+Sa client folder na nakalagay ang vite template na gagamitin natin
+
+4. Open html
+    - in terminal, type 
+    - `cd client `
+    - ` npm install `
+    - ` npm run dev`

@@ -1,6 +1,6 @@
-import mysql from 'mysql';
+import mysql from 'mysql2';
 
-export const createConnection = () => {
+export const connectToMySQL = () => {
   const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
