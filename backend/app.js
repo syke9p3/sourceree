@@ -4,9 +4,11 @@ import authRouter from './routes/auth.routes.js'
 import userRouter from './routes/users.routes.js'
 import employeeRouter from './routes/employees.routes.js'
 import db from './sequelize.js';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 app.use(cors())
 
 app.use('/api/users', userRouter);

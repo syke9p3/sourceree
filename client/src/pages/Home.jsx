@@ -54,7 +54,7 @@ const Home = () => {
             <div className="flex justify-between items-center">
                 <h1 className='text-3xl font-bold'>Employees</h1>
                 <button className="bg-green-600 font-bold text-white p-2 my-2" type="submit">
-                    <Link to='/create_employee'>+ Create Employee</Link>
+                    <Link to='/create/employee'>+ Create Employee</Link>
                 </button>
             </div>
 

@@ -23,12 +23,12 @@ export const signIn = async (req, res, next) => {
 
         const user = await User.findOne({ where: { email: email } })
 
-        if (!user) return res.status(400).json({ error: "User doesn't exist" })
+        if (!user) return res.json({ error: "User doesn't exist" })
 
         const matchPass = await bcryptjs.compare(password, user.password);
-        if (!matchPass) return res.status(400).json({ error: 'Wrong credentials' })
+        if (!matchPass) return res.json({ error: 'Wrong credentials' })
 
-        const token = jwt.sign({ id: user.id }, 'secretkunyari')
+        const token = jwt.sign({ username: user.username, id: user.id }, 'secretkunyari')
         const { password: pass, ...userInfo } = user.dataValues
 
 
