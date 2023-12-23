@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react"
 import axios from 'axios';
 import UpdateEmployee from "../components/UpdateEmployee";
-import { Link, useNavigate  } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { FaPencilAlt, FaTrash } from 'react-icons/fa'
 
 const Home = () => {
 
     let navigateTo = useNavigate()
+    let location = useLocation();
+    const params = new URLSearchParams(location.search);
+    const successMessage = params.get('success');
 
     const [employees, setEmployees] = useState([])
     const [selectedEmployee, setSelectedEmployee] = useState(null);
@@ -18,7 +22,6 @@ const Home = () => {
         axios.get('http://localhost:8080/api/employees')
             .then(function (response) {
                 setEmployees(response.data.reverse())
-                console.log(employees)
             })
             .catch(function (error) {
                 console.log(error);
@@ -42,44 +45,58 @@ const Home = () => {
     };
 
     const handleUpdateEmployee = () => {
-        // Clear the selected employee after update
         setSelectedEmployee(null);
-        // Fetch employees after update
         fetchEmployees();
     };
 
     return (
         <div className="m-2">
-            <h1 className='text-3xl font-bold text-red-500'>Employees</h1>
-
-            <button className="bg-green-600 font-bold text-white rounded p-2 m-2" type="submit">
-                <Link to='/create_employee'>+ Create Employee</Link>
-            </button>
-
-            <div>
-                {/* Pass the selected employee and update callback to UpdateEmployee */}
-                {selectedEmployee && (
-                    <UpdateEmployee
-                        key={selectedEmployee.id}
-                        employee={selectedEmployee}
-                        onUpdateEmployee={handleUpdateEmployee}
-                    />
-                )}
+            <div className="flex justify-between items-center">
+                <h1 className='text-3xl font-bold'>Employees</h1>
+                <button className="bg-green-600 font-bold text-white p-2 my-2" type="submit">
+                    <Link to='/create_employee'>+ Create Employee</Link>
+                </button>
             </div>
 
-            <br />
-            <p>List of employees:</p>
+            {successMessage && (
+                <div className="bg-green-200 text-green-800 p-2 m-2">
+                    {successMessage}
+                </div>
+            )}
+
             <ul>
                 {employees.map((employee) => (
-                    <li key={employee.id} className="m-2 border-solid border p-2 flex justify-between" onClick={() => {navigateTo(`/employee/${employee.id}`)}}>
-                            <div>
-                                <h3 className="font-bold">{employee.name}</h3>
-                                <span className="text-sm text-gray-500">{employee.email}</span>
-                                <p>{employee.department} ({employee.position})</p>
-                                <p>${employee.salary}</p>
-                                <button className="bg-yellow-500 font-bold text-white rounded-sm p-2 text-sm my-2" onClick={() => handleEdit(employee)}>Edit</button>
-                                <button className="bg-red-500 font-bold text-white rounded-sm p-2 text-sm my-2" onClick={() => deleteEmployee(employee.id)}>Delete</button>
-                            </div>
+                    <li key={employee.id} className="bg-white shadow-sm my-4 border-solid border p-6 flex justify-between"> {/* onClick={() => {navigateTo(`/employee/${employee.id}`)}} */}
+                        <div>
+                            <h3 className="font-bold">{employee.name}</h3>
+                            <span className="text-sm text-gray-500">{employee.email}</span>
+                            <p>{employee.department} ({employee.position})</p>
+                            <p>${employee.salary}</p>
+                            <br />
+                            <button className="bg-yellow-500 font-bold text-white p-3  text-sm mt-2"
+                                onClick={() => handleEdit(employee)}>
+                                
+                                <span className="flex gap-2 items-center"> 
+                                <FaPencilAlt size={16}/>
+                                    Edit
+                                </span>
+                            </button>
+                            <button className="bg-red-500 font-bold text-white p-3 ml-1 text-sm mt-2"
+                                onClick={() => deleteEmployee(employee.id)}>
+                                <span className="flex gap-2 items-center"> 
+                                    <FaTrash size={16}/> 
+                                    Delete
+                                </span>
+                            </button>
+                        </div>
+
+                        {selectedEmployee && selectedEmployee.id == employee.id && (
+                            <UpdateEmployee
+                                key={selectedEmployee.id}
+                                employee={selectedEmployee}
+                                onUpdateEmployee={handleUpdateEmployee}
+                            />
+                        )}
                     </li>
                 ))}
             </ul>

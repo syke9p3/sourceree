@@ -27,7 +27,7 @@ const CreateEmployee = () => {
         axios.post('http://localhost:8080/api/employees', employeeData)
             .then(response => {
                 console.log('Employee created:', response.data);
-                navigateTo('/')
+                navigateTo(`/?success=${response.data}`)
             })
             .catch(error => {
                 console.error('Error adding employee:', error);
@@ -37,8 +37,8 @@ const CreateEmployee = () => {
     return (
         <div>
             <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={employeeSchema}>
-                <Form className='max-w-md border-2 border-solid flex flex-col gap-2 m-2 p-2'>
-                    <h3 className="font-bold text-xl">Create Employee Form</h3>
+                <Form className='max-w-md border-2 border-solid shadow-lg flex flex-col gap-2 mx-auto p-6 bg-white'>
+                    <h3 className="font-bold text-xl my-4">Create Employee Form</h3>
                     <div>
                         <label htmlFor="name">Name</label>
                         <ErrorMessage
@@ -48,7 +48,7 @@ const CreateEmployee = () => {
                         <Field
                             name="name"
                             placeholder="Example John"
-                            className="border border-solid w-full p-2 my-2" />
+                            className="bg-gray-50 border border-solid w-full p-2 my-2" />
                     </div>
                     <div>
                         <label htmlFor="email">Email</label>
@@ -59,7 +59,7 @@ const CreateEmployee = () => {
                             name="email"
                             type="email"
                             placeholder="name@example.com"
-                            className="border border-solid w-full p-2 my-2" />
+                            className="bg-gray-50 border border-solid w-full p-2 my-2" />
                     </div>
                     <div>
                         <label htmlFor="department">Department</label>
@@ -69,7 +69,7 @@ const CreateEmployee = () => {
                         <Field
                             name="department"
                             placeholder="Medical"
-                            className="border border-solid w-full p-2 my-2" />
+                            className="bg-gray-50 border border-solid w-full p-2 my-2" />
                     </div>
                     <div>
                         <label htmlFor="position">Position</label>
@@ -79,7 +79,7 @@ const CreateEmployee = () => {
                         <Field
                             name="position"
                             placeholder="Nurse"
-                            className="border border-solid w-full p-2 my-2" />
+                            className="bg-gray-50 border border-solid w-full p-2 my-2" />
                     </div>
                     <div>
                         <label htmlFor="salary">Salary</label>
@@ -89,7 +89,7 @@ const CreateEmployee = () => {
                         <Field name="salary"
                             type="number"
                             placeholder="100"
-                            className="border border-solid w-full p-2 my-2" />
+                            className="bg-gray-50 border border-solid w-full p-2 my-2" />
                     </div>
                     <button className="bg-green-600 font-bold text-white rounded p-2 m-2" type="submit">+ Create Employee</button>
                 </Form>
