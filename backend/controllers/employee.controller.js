@@ -1,8 +1,5 @@
 import Employee from '../models/Employee.js';
 import { connectToMySQL } from '../utils/db.js'
-import { errorHandler } from '../utils/errorHandler.js'
-import { sanitizeEmployeeData } from '../utils/sanitization.js';
-import { validateEmployeeData } from '../utils/validation.js';
 
 const db = connectToMySQL()
 

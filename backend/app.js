@@ -1,18 +1,17 @@
 import express from 'express';
 import cors from 'cors';
-import { errorHandler } from './utils/errorHandler.js';
+import authRouter from './routes/auth.routes.js'
+import userRouter from './routes/users.routes.js'
 import employeeRouter from './routes/employees.routes.js'
-import sequelize from './sequelize.js'; // Import your Sequelize instance
+import db from './sequelize.js';
 
 const app = express();
 app.use(express.json());
 app.use(cors())
 
+app.use('/api/users', userRouter);
+app.use('/api/auth', authRouter);
 app.use('/api/employees', employeeRouter);
-
-app.get('/example/error', (req, res, next) => {
-    next(errorHandler(404, 'Oh no! An example error just occured'));
-});
 
 // Display available routes
 app.get('/', (req, res) => {
@@ -20,13 +19,14 @@ app.get('/', (req, res) => {
         {
             routes: [
                 '/api/employees/',
-                '/api/employees/:id'
+                '/api/employees/:id',
+                '/api/auth/signup',
             ]
         }
     );
 });
 
-sequelize.sync({ force: false })
+db.sync({ force: false })
     .then(() => {
         const PORT = process.env.PORT || 8080;
         app.listen(PORT, () => {
