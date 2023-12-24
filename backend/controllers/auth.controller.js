@@ -35,8 +35,19 @@ export const signIn = async (req, res, next) => {
         return res
             .cookie('accessToken', token, { httpOnly: true })
             .status(200)
-            .json({ message: 'Login successful', user: userInfo })
+            .json(userInfo)
     } catch (error) {
         return res.status(500).json({ error: 'May mali sa server' });
     }
 };
+
+export const signOut = async (req, res, next) => {
+    console.log('signing out...')
+    try {
+      console.log('clearing cookie')
+      res.clearCookie('accessToken');
+      res.status(200).json('User has been logged out');
+    } catch (error) {
+        return res.status(500).json({ error: 'May mali sa server' });
+    }
+  };

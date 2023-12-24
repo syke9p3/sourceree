@@ -3,8 +3,13 @@ import axios from 'axios';
 import UpdateEmployee from "../components/UpdateEmployee";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FaPencilAlt, FaTrash } from 'react-icons/fa'
+import { useSelector } from 'react-redux';
+import Spinner from "../components/Spinner";
 
 const Home = () => {
+
+    // Get the signed user account from the state manager store
+    const { signedUser: User } = useSelector(state => state.auth)
 
     let navigateTo = useNavigate()
     let location = useLocation();
@@ -13,18 +18,26 @@ const Home = () => {
 
     const [employees, setEmployees] = useState([])
     const [selectedEmployee, setSelectedEmployee] = useState(null);
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
 
     useEffect(() => {
         fetchEmployees()
     }, [])
 
     const fetchEmployees = () => {
+        setError(null)
+        setLoading(true)
         axios.get('http://localhost:8080/api/employees')
             .then(function (response) {
                 setEmployees(response.data.reverse())
+                setError(error)
+                setLoading(false)
             })
             .catch(function (error) {
                 console.log(error);
+                setError(error)
+                setLoading(false)
             });
     }
 
@@ -49,13 +62,21 @@ const Home = () => {
         fetchEmployees();
     };
 
+
+
     return (
         <div className="m-2">
-            <div className="flex justify-between items-center">
-                <h1 className='text-3xl font-bold'>Employees</h1>
-                <button className="bg-green-600 font-bold text-white p-2 my-2" type="submit">
-                    <Link to='/create/employee'>+ Create Employee</Link>
-                </button>
+            <div className="flex justify-between items-center mb-10">
+                <h1 className='text-3xl font-bold'>Dashboard</h1>
+                {User && (
+                    <Link to='/create/employee'>
+                        <button className="bg-green-600 font-bold text-white px-3 py-2 my-2 text-sm shadow-md hover:bg-green-700" type="submit">
+                            + Add Employee
+                        </button>
+                    </Link>
+                )
+                }
+
             </div>
 
             {successMessage && (
@@ -63,6 +84,42 @@ const Home = () => {
                     {successMessage}
                 </div>
             )}
+
+            {/* {loading && (<div className="flex items-center justify-center p-2 text-sm ">
+                <Spinner />
+                <div className="border shadow rounded-md p-4 max-w-xl w-full ">
+                    <div className="animate-pulse flex space-x-4">
+                        <div className="rounded-full bg-gray-500 h-10 w-10"></div>
+                        <div className="flex-1 space-y-6 py-1">
+                            <div className="h-2 bg-gray-500 rounded"></div>
+                            <div className="space-y-3">
+                                <div className="grid grid-cols-3 gap-4">
+                                    <div className="h-2 bg-gray-500 rounded col-span-2"></div>
+                                    <div className="h-2 bg-gray-500 rounded col-span-1"></div>
+                                </div>
+                                <div className="h-2 bg-gray-500 rounded"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>)
+            } */}
+
+            {error && (
+                <div class="flex h-[calc(50vh-40px)] items-center justify-center p-5 w-full">
+                    <div class="text-center">
+                        <div class="inline-flex rounded-full bg-red-100 p-3">
+                            <div class="rounded-full stroke-red-600 bg-red-200 p-3">
+                                <svg class="w-8 h-8" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 8H6.01M6 16H6.01M6 12H18C20.2091 12 22 10.2091 22 8C22 5.79086 20.2091 4 18 4H6C3.79086 4 2 5.79086 2 8C2 10.2091 3.79086 12 6 12ZM6 12C3.79086 12 2 13.7909 2 16C2 18.2091 3.79086 20 6 20H14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17 16L22 21M22 16L17 21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                            </div>
+                        </div>
+                        <h1 class="mt-5 text-xl font-bold text-slate-800">500 - Server error</h1>
+                        <p class="text-slate-600 mt-3 text-sm">Oops something went wrong. Try to refresh this page or <br /> feel free to contact us if the problem presists.</p>
+                    </div>
+                </div>
+
+            )
+            }
 
             <ul>
                 {employees.map((employee) => (
@@ -73,21 +130,23 @@ const Home = () => {
                             <p>{employee.department} ({employee.position})</p>
                             <p>${employee.salary}</p>
                             <br />
-                            <button className="bg-yellow-500 font-bold text-white p-3  text-sm mt-2"
-                                onClick={() => handleEdit(employee)}>
-                                
-                                <span className="flex gap-2 items-center"> 
-                                <FaPencilAlt size={16}/>
-                                    Edit
-                                </span>
-                            </button>
-                            <button className="bg-red-500 font-bold text-white p-3 ml-1 text-sm mt-2"
-                                onClick={() => deleteEmployee(employee.id)}>
-                                <span className="flex gap-2 items-center"> 
-                                    <FaTrash size={16}/> 
-                                    Delete
-                                </span>
-                            </button>
+                            {User && <>
+                                <button className="bg-yellow-500 font-bold text-white p-3  text-sm mt-2"
+                                    onClick={() => handleEdit(employee)}>
+
+                                    <span className="flex gap-2 items-center">
+                                        <FaPencilAlt size={16} />
+                                        Edit
+                                    </span>
+                                </button>
+                                <button className="bg-red-500 font-bold text-white p-3 ml-1 text-sm mt-2"
+                                    onClick={() => deleteEmployee(employee.id)}>
+                                    <span className="flex gap-2 items-center">
+                                        <FaTrash size={16} />
+                                        Delete
+                                    </span>
+                                </button>
+                            </>}
                         </div>
 
                         {selectedEmployee && selectedEmployee.id == employee.id && (

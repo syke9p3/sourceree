@@ -2,10 +2,15 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import Spinner from '../components/Spinner';
 
 const CreateEmployee = () => {
 
     let navigateTo = useNavigate()
+
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
 
     const initialValues = {
         name: '',
@@ -24,13 +29,18 @@ const CreateEmployee = () => {
     });
 
     const onSubmit = (employeeData) => {
+        setLoading(true)
         axios.post('http://localhost:8080/api/employees', employeeData)
             .then(response => {
                 console.log('Employee created:', response.data);
                 navigateTo(`/?success=${response.data}`)
+                setLoading(false)
+
             })
             .catch(error => {
                 console.error('Error adding employee:', error);
+                setError(error)
+                setLoading(false)
             });
     }
 
@@ -91,7 +101,11 @@ const CreateEmployee = () => {
                             placeholder="100"
                             className="bg-gray-50 border border-solid w-full p-2 my-2" />
                     </div>
-                    <button className="bg-green-600 font-bold text-white rounded p-2 m-2" type="submit">+ Create Employee</button>
+                    <button className="bg-green-600 font-bold text-white rounded p-2 m-2 disabled:opacity-80 " disabled={loading} type="submit">
+                        {loading ?
+                            <p className='font-normal'><Spinner /> Loading...</p>
+                            : <p>+ Create Employee</p>}
+                    </button>
                 </Form>
             </Formik>
         </div>

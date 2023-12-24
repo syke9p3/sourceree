@@ -1,7 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Registration = () => {
 
@@ -30,7 +30,7 @@ const Registration = () => {
         axios.post('http://localhost:8080/api/auth/signup', userData)
             .then(response => {
                 console.log(" Registration is successful ")
-                naviagateTo('/login')
+                naviagateTo('/login?signUpSuccess=true')
             })
     }
 
@@ -75,6 +75,7 @@ const Registration = () => {
                             className="bg-gray-200 border border-solid w-full p-2 my-2" />
                     </div>
                     <button className="bg-green-600 font-bold text-white rounded p-2 my-6" type="submit">Register</button>
+                    <p className='text-sm'>Have an account? <Link to='/login'><span className='text-green-500'>Sign in</span></Link></p>
                 </Form>
             </Formik>
         </div>
