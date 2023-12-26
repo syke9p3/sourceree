@@ -4,7 +4,7 @@ import { FaPencilAlt, FaTrash } from 'react-icons/fa';
 const EmployeeSkeleton = () => (
     <ul>
         {[...Array(5).keys()].map((index) => (
-            <li key={index} className="bg-white shadow-sm my-4 border-solid border p-6 flex justify-between">
+            <li key={index} className="bg-white shadow-sm my-4 border-solid border p-6 flex justify-between max-w-md">
 
                 <div role="status" class="animate-pulse">
                     <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 max-w-[640px] mb-2.5 mx-auto"></div>

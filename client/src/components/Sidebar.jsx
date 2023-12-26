@@ -38,8 +38,8 @@ const Sidebar = () => {
 
     return (
         <div
-            className={`${open ? 'w-72' : 'w-20'
-                } transition-width duration-300 bg-blue-900 h-screen overflow-y-auto overflow-x-hidden relative p-5 pt-8`}>
+            className={`${open ? 'w-72 transition-width duration-300' : 'w-20 transition-width duration-300'
+                }  bg-blue-900 h-screen overflow-y-auto overflow-x-hidden relative p-5 pt-8`}>
             <button
                 onClick={() => setOpen(!open)}
                 className={`w-12 h-9 flex justify-center items-center absolute cursor-pointer  z-10 -right-4 pr-3 top-16 shadow-lg border-2 border-blue-900 bg-white rounded-l-full text-gray-400`}>
