@@ -2,12 +2,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { signOutFailure, signOutStart, signOutSuccess } from '../app/auth/authSlice.js';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
+import { useEffect } from 'react';
+import { useTitle } from '../hooks/useTitle.js';
 
 const Profile = () => {
 
     const { loading, error, signedUser: User } = useSelector(state => state.auth)
     const dispatch = useDispatch()
     const navigateTo = useNavigate()
+
+    useTitle('Profile Page')
 
     const handleLogout = async () => {
         console.log('logging out')

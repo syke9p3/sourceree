@@ -11,3 +11,24 @@
 body {
     @apply bg-gray-100
 }
+
+/* Width */
+::-webkit-scrollbar {
+    width: 5px;
+    box-shadow: 10px 10px 8px #888888;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #b5b5b5;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    @apply bg-blue-500
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-blue-600
+  }

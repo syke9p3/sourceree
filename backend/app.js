@@ -1,3 +1,4 @@
+import axios from 'axios';
 import express from 'express';
 import cors from 'cors';
 import authRouter from './routes/auth.routes.js'
@@ -26,6 +27,16 @@ app.get('/', (req, res) => {
             ]
         }
     );
+});
+
+app.get('/api/quotes', async (req, res) => {
+    try {
+        const response = await axios.get('https://zenquotes.io/api/quotes');
+        res.json(response.data);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
 });
 
 db.sync({ force: false })

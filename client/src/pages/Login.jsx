@@ -7,8 +7,11 @@ import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useTitle } from '../hooks/useTitle.js';
 
 const Login = () => {
+
+    useTitle('Login Page')
 
     const [signUpSuccess, setSignUpSuccess] = useState(false);
 
@@ -100,8 +103,8 @@ const Login = () => {
                         className="bg-gray-200 border border-solid w-full p-2 my-2" />
                 </div>
                 {error && <span className='text-red-500 text-sm'>{error}</span>}
-                <button disabled={loading} className="bg-green-600 font-bold text-white rounded p-2 my-6 disabled:opacity-80" type="submit">{loading ? '...' : 'Login'}</button>
-            <p className='text-sm'>Don't have an account? <Link to='/signup'><span className='text-green-500'>Sign up</span></Link></p>
+                <button disabled={loading} className="bg-blue-600 font-bold text-white rounded p-2 my-6 disabled:opacity-80" type="submit">{loading ? 'Logging in...' : 'Login'}</button>
+            <p className='text-sm'>Don't have an account? <Link to='/signup'><span className='text-blue-500'>Sign up</span></Link></p>
             </form>
             
         </div>

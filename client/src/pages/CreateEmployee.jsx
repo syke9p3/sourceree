@@ -4,8 +4,11 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Spinner from '../components/Spinner';
+import { useTitle } from '../hooks/useTitle';
 
 const CreateEmployee = () => {
+
+    useTitle('Add Employee')
 
     let navigateTo = useNavigate()
 

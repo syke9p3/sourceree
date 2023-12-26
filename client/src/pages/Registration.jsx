@@ -2,8 +2,11 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom';
+import { useTitle } from '../hooks/useTitle';
 
 const Registration = () => {
+
+    useTitle('Sign Up Page')
 
     const naviagateTo = useNavigate()
 
@@ -74,8 +77,8 @@ const Registration = () => {
                             placeholder="Your password"
                             className="bg-gray-200 border border-solid w-full p-2 my-2" />
                     </div>
-                    <button className="bg-green-600 font-bold text-white rounded p-2 my-6" type="submit">Register</button>
-                    <p className='text-sm'>Have an account? <Link to='/login'><span className='text-green-500'>Sign in</span></Link></p>
+                    <button className="bg-blue-600 font-bold text-white rounded p-2 my-6" type="submit">Register</button>
+                    <p className='text-sm'>Have an account? <Link to='/login'><span className='text-blue-500'>Sign in</span></Link></p>
                 </Form>
             </Formik>
         </div>
