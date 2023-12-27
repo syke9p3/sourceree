@@ -1,34 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 
 * {
     font-family: 'Poppins', sans-serif;
 }
 
 body {
-    @apply bg-gray-100
+    background-color: #EAF1F7;
 }
 
 /* Width */
 ::-webkit-scrollbar {
     width: 5px;
     box-shadow: 10px 10px 8px #888888;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
+}
+
+/* Track */
+::-webkit-scrollbar-track {
     background: #b5b5b5;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
     @apply bg-blue-500
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
     @apply bg-blue-600
-  }
+}
+
+table {
+    @apply text-xs text-slate-700
+}
+
+tr {
+    @apply shadow-sm 
+}
+
+th {
+    @apply uppercase text-sky-300;
+    color: #92bfda;
+}
+
+ td {
+    @apply px-3 py-6 text-center
+}

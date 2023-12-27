@@ -65,8 +65,6 @@ const Home = () => {
         fetchEmployees();
     };
 
-
-
     return (
         <div className="m-2">
             <div className="flex justify-between items-center mb-10">
@@ -81,14 +79,19 @@ const Home = () => {
                 }
             </div>
 
-
             {successMessage && (
                 <div className="bg-green-200 text-green-800 p-2 m-2">
                     {successMessage}
                 </div>
             )}
 
-            {loading && <EmployeeSkeleton />}
+            <EmployeeSkeleton />
+            <EmployeeSkeleton />
+            <EmployeeSkeleton />
+            <EmployeeSkeleton />
+            <EmployeeSkeleton />
+
+
 
             {error && (
                 <div className="flex h-[calc(50vh-40px)] items-center justify-center p-5 w-full">

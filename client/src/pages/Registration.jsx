@@ -77,8 +77,11 @@ const Registration = () => {
                             placeholder="Your password"
                             className="bg-gray-200 border border-solid w-full p-2 my-2" />
                     </div>
-                    <button className="bg-blue-600 font-bold text-white rounded p-2 my-6" type="submit">Register</button>
-                    <p className='text-sm'>Have an account? <Link to='/login'><span className='text-blue-500'>Sign in</span></Link></p>
+                    <div className="my-6 ">
+                        <p className='text-xs text-gray-400'>By clicking Sign Up, you agree to our <span className='text-blue-500'><Link to='/privacy'>Privacy Policy</Link></span>.</p>
+                        <button className="bg-green-500 hover:bg-green-600 font-bold text-white rounded p-2 my-2 w-full" type="submit">Sign Up</button>
+                    </div>
+                    <p className='text-sm'>Have an account? <Link to='/login'><span className='text-blue-500 font-medium'>Sign in</span></Link></p>
                 </Form>
             </Formik>
         </div>

@@ -31,7 +31,6 @@ export const signIn = async (req, res, next) => {
         const token = jwt.sign({ username: user.username, id: user.id }, 'secretkunyari')
         const { password: pass, ...userInfo } = user.dataValues
 
-
         return res
             .cookie('accessToken', token, { httpOnly: true })
             .status(200)
