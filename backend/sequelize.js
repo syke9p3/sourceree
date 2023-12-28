@@ -4,7 +4,7 @@ const sequelize = new Sequelize({
   dialect: 'mysql', // Replace 'mysql' with your database type
   database: 'playground',
   username: 'root',
-  password: 'password',
+  password: '',
   host: '127.0.0.1', // Or your database host
   port: 3306, // Or your database port
   define: {
