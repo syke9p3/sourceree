@@ -2,16 +2,16 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 
-const Employee = () => {
+const Applicant = () => {
 
     let { id } = useParams()
 
-    const [employee, setEmployee] = useState({})
+    const [applicant, setApplicant] = useState({})
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/employees/${id}`)
+        axios.get(`http://localhost:8080/api/applicants/${id}`)
             .then(function (response) {
-                setEmployee(response.data);
+                setApplicant(response.data);
             })
             .catch(function (error) {
                 console.log(error);
@@ -21,23 +21,23 @@ const Employee = () => {
 
     return (
         <div>
-            {/* <h3 classNameName="font-bold">{employee.name}</h3>
-            <span classNameName="text-sm text-gray-500">{employee.email}</span>
-            <p>{employee.department} ({employee.position})</p>
-            <p>${employee.salary}</p>
-            <button classNameName="bg-yellow-500 font-bold text-white rounded-sm p-2 text-sm my-2" onClick={() => handleEdit(employee)}>Edit</button>
-            <button classNameName="bg-red-500 font-bold text-white rounded-sm p-2 text-sm my-2" onClick={() => deleteEmployee(employee.id)}>Delete</button> */}
+            {/* <h3 classNameName="font-bold">{applicant.name}</h3>
+            <span classNameName="text-sm text-gray-500">{applicant.email}</span>
+            <p>{applicant.department} ({applicant.position})</p>
+            <p>${applicant.salary}</p>
+            <button classNameName="bg-yellow-500 font-bold text-white rounded-sm p-2 text-sm my-2" onClick={() => handleEdit(applicant)}>Edit</button>
+            <button classNameName="bg-red-500 font-bold text-white rounded-sm p-2 text-sm my-2" onClick={() => deleteApplicant(applicant.id)}>Delete</button> */}
             <div className="bg-indigo-50 h-screen">
                 <nav>
                     <div className="w-full bg-gradient-to-tr from-indigo-600 to-purple-600 py-4">
-                        <h1 className="text-center text-indigo-100 text-xl font-bold">EMPLOYEE { employee.id }</h1>
+                        <h1 className="text-center text-indigo-100 text-xl font-bold">APPLICANT { applicant.id }</h1>
                     </div>
                 </nav>
                 <div className="px-10 mt-10">
                     <div className="bg-white rounded-md max-w-4xl mx-auto p-4 space-y-4 shadow-lg">
-                        <h3 className="mb-2 pt-3 font-semibold">Name: <span className="font-thin">{ employee.name }</span></h3>
+                        <h3 className="mb-2 pt-3 font-semibold">Name: <span className="font-thin">{ applicant.name }</span></h3>
                         <h3 className="border-t mb-2 pt-3 font-semibold">Email:
-                            <span className="font-thin"> { employee.email }</span></h3>
+                            <span className="font-thin"> { applicant.email }</span></h3>
                         <div className="flex justify-end space-x-2">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-500 cursor-pointer" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
@@ -66,4 +66,4 @@ const Employee = () => {
     )
 }
 
-export default Employee
+export default Applicant

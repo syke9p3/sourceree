@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Employees = () => {
+const Applicants = () => {
 
     const [activeTab, setActiveTab] = useState("all")
 
@@ -56,4 +56,4 @@ const Employees = () => {
     )
 }
 
-export default Employees
+export default Applicants

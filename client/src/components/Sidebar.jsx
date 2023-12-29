@@ -14,8 +14,8 @@ const Sidebar = ({open, toggleOpen}) => {
             icon: <FaChartPie size={20} />
         },
         {
-            title: 'Employees',
-            link: '/employees',
+            title: 'Applicants',
+            link: '/applicants',
             icon: <FaPerson size={20} />
         },
         {

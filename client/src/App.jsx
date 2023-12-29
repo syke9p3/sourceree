@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import Home from "./pages/Home";
-import CreateEmployee from './pages/CreateEmployee';
-import Employee from './components/Employee';
+import CreateApplicant from './pages/CreateApplicant.jsx';
+import Applicant from './components/Applicant';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
 import { useContext, useState } from 'react';
@@ -12,7 +12,7 @@ import PrivateRoute from './pages/PrivateRoute';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar.jsx';
 import PageNotFound from './pages/PageNotFound.jsx';
-import Employees from './pages/Employees.jsx';
+import Applicants from './pages/Applicants.jsx';
 
 const App = () => {
 
@@ -35,14 +35,14 @@ const App = () => {
                     <div className='mx-10 my-10'>
                         <Routes>
                             <Route path='/' element={<Home />} />
-                            <Route path='/employees' element={<Employees />} />
+                            <Route path='/applicants' element={<Applicants />} />
                             <Route path='/login' element={<Login />} />
                             <Route path='/signup' element={<Registration />} />
-                            <Route path='/create/employee' element={<CreateEmployee />} />
+                            <Route path='/create/applicant' element={<CreateApplicant />} />
                             <Route element={<PrivateRoute />}>
                                 <Route path='/profile' element={<Profile />} />
                             </Route>
-                            <Route path='/employee/:id' element={<Employee />} />
+                            <Route path='/applicant/:id' element={<Applicant />} />
                             <Route path='*' element={<PageNotFound />} />
                         </Routes>
                     </div>

@@ -3,7 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import authRouter from './routes/auth.routes.js'
 import userRouter from './routes/users.routes.js'
-import employeeRouter from './routes/employees.routes.js'
+import applicantRouter from './routes/applicants.routes.js'
 import db from './sequelize.js';
 import cookieParser from 'cookie-parser';
 
@@ -14,15 +14,15 @@ app.use(cors())
 
 app.use('/api/users', userRouter);
 app.use('/api/auth', authRouter);
-app.use('/api/employees', employeeRouter);
+app.use('/api/applicants', applicantRouter);
 
 // Display available routes
 app.get('/', (req, res) => {
     res.json(
         {
             routes: [
-                '/api/employees/',
-                '/api/employees/:id',
+                '/api/applicants/',
+                '/api/applicants/:id',
                 '/api/auth/signup',
             ]
         }

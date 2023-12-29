@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaPencilAlt, FaTrash } from 'react-icons/fa';
 
-const EmployeeSkeleton = () => (
+const ApplicantSkeleton = () => (
     <ul>
         {[...Array(5).keys()].map((index) => (
             <li key={index} className="bg-white shadow-sm my-4 border-solid border p-6 flex justify-between max-w-md">
@@ -24,4 +24,4 @@ const EmployeeSkeleton = () => (
     </ul>
 );
 
-export default EmployeeSkeleton;
+export default ApplicantSkeleton;
