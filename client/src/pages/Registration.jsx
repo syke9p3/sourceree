@@ -14,6 +14,7 @@ const Registration = () => {
         username: '',
         email: '',
         password: '',
+        userId: ''
     }
 
     const registrationSchema = Yup.object().shape({
@@ -26,7 +27,8 @@ const Registration = () => {
 
             //     'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character'
             // )
-            .required('Password is required')
+            .required('Password is required'),
+        userId: Yup.number().required('*Required')
     });
 
     const onSubmit = (userData) => {
@@ -42,6 +44,18 @@ const Registration = () => {
             <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={registrationSchema}>
                 <Form className='bg-white max-w-md border-2 border-solid flex flex-col gap-2 p-6 mx-auto'>
                     <h3 className="font-bold text-xl mb-4">SIGN UP</h3>
+                    <div>
+                        <label htmlFor="userId" className=''>Recruiter ID</label>
+                        <ErrorMessage
+                            name="userId"
+                            component="span"
+                            className='text-red-500 ml-2 text-xs' />
+                        <Field
+                            name="userId"
+                            type="number"
+                            placeholder="1123"
+                            className="bg-gray-200 border border-solid w-full p-2 my-2" />
+                    </div>
                     <div>
                         <label htmlFor="username" className=''>Username</label>
                         <ErrorMessage

@@ -24,6 +24,10 @@ const User = sequelize.define("User" , {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }
 })
 
 User.associate = (models) => {

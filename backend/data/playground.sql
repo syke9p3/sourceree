@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2023 at 06:39 PM
+-- Generation Time: Dec 30, 2023 at 08:52 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -62,9 +62,9 @@ CREATE TABLE `applicants` (
 --
 
 INSERT INTO `applicants` (`id`, `firstName`, `middleName`, `lastName`, `birthMonth`, `birthDay`, `birthYear`, `age`, `civilStatus`, `sex`, `contact`, `email`, `altEmail`, `homeAddress`, `highestEducationalAttainment`, `lastSchoolAttended`, `bpoExpYears`, `bpoExpPosition`, `endorsementDate`, `interviewTime`, `clientCompany`, `clientCompanySite`, `applicantStatus`, `agencyRemarks`, `clientCompanyRemarks`, `resume`, `userId`) VALUES
-(1, 'John', 'Doe', 'Smith', 'January', 15, 1990, 32, 'Married', 'Male', '123-456-7890', 'john.doe@example.com', 'john.alt@example.com', '123 Main Street, Cityville', 'Bachelor\'s Degree', 'University of City', 5, 'Customer Service Representative', '2023-01-20', '10:00 AM', 'ABC Tech Solutions', 'Tech Park', 'Active', 'Good communication skills', 'Needs further technical evaluation', 'resume_file.pdf', 1),
-(2, 'Aliana', 'Jana', 'San', 'January', 1, 1991, 31, 'Married', 'Female', '123-456-7890', 'aliana@example.com', 'aliana.alt@example.com', '123 Main Street, Cityville', 'High School', 'University of City', 5, 'Customer Service Representative', '2023-01-20', '10:00 AM', 'ABC Tech Solutions', 'Tech Park', 'Active', 'Good communication skills', 'Needs further technical evaluation', 'resume_file.pdf', 1),
-(3, 'Taylor', 'Alison', 'Swift', 'September', 10, 2014, 21, 'Single', 'Female', '0938493729', 'taylor@gmail.com', 'taylorswift@gmail.com', 'asvr', 'bdrtbtrg', 'nbstrf', 4, 'sbddv', '2023-12-29', '11 AM', 'sbrfdr', 'srb', 'Active', 'N/A', 'N/A', 'C:\\fakepath\\pup.png', 0);
+(1, 'John', 'Doe', 'Smith', 'January', 15, 1990, 32, 'Married', 'Male', '123-456-7890', 'john.doe@example.com', 'john.alt@example.com', '123 Main Street, Cityville', 'Bachelor\'s Degree', 'University of City', 5, 'Customer Service Representative', '2023-01-20', '10:00 AM', 'ABC Tech Solutions', 'Tech Park', 'Active', 'Good communication skills', 'Needs further technical evaluation', 'resume_file.pdf', 1123),
+(6, 'Aliana', 'Jana', 'San', 'January', 1, 1991, 31, 'Married', 'Female', '123-456-7890', 'aliana@example.com', 'aliana.alt@example.com', '123 Main Street, Cityville', 'High School', 'University of City', 5, 'Customer Service Representative', '2023-01-20', '10:00 AM', 'ABC Tech Solutions', 'Tech Park', 'Active', 'Good communication skills', 'Needs further technical evaluation', 'resume_file.pdf', 1122),
+(8, 'Denise', 'Grizelle', 'Sayaang', 'December', 5, 2000, 23, 'Single', 'Female', '0938493729', 'dgs@gmail.com', 'dgssss@gmail.com', 'avv3wr', 'College Graduate', 'avrewa', 2, 'hdrhbrf', '2023-12-22', '11 AM', 'srhdr', 'hdtgj', 'Active-Pending', 'afswg', 'gegc', 'C:\\fakepath\\pup.png', 1123);
 
 -- --------------------------------------------------------
 
@@ -76,15 +76,16 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `userId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
-(1, 'Johna', 'johna@gmail.com', '$2a$10$iJZK1B6x5QRFrA0zPTvSuubyHHutA1L52fmtcwt.ypPwpLCq7JUiK');
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `userId`) VALUES
+(1, 'alice', 'alice@gmail.com', '$2a$10$PvSxaZj6JAIfclMC63q8VuWK80YYn0aaNP4f5GUtjyNG8wpifVbce', 1123);
 
 --
 -- Indexes for dumped tables
@@ -113,7 +114,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `applicants`
 --
 ALTER TABLE `applicants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`

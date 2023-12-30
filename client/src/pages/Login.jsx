@@ -49,6 +49,7 @@ const Login = () => {
     const [userData, setUserData] = useState({
         email: '',
         password: '',
+        userId: '',
     });
 
     const handleInputChange = (e) => {
@@ -82,6 +83,15 @@ const Login = () => {
             <ToastContainer />
             <form onSubmit={(e) => { handleSubmit(e) }} className='bg-white max-w-md border-2 border-solid flex flex-col gap-2 mx-auto p-6'>
                 <h3 className="font-bold text-xl mb-4">LOG IN</h3>
+                <div>
+                    <label htmlFor="userId" className=''>Recruiter ID</label>
+
+                    <input
+                        name="userId"
+                        onChange={handleInputChange}
+                        placeholder="1123"
+                        className="bg-gray-200 border border-solid w-full p-2 my-2" />
+                </div>
                 <div>
                     <label htmlFor="email" className=''>Email</label>
 

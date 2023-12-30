@@ -118,7 +118,7 @@ const CreateApplicant = () => {
         clientCompanyRemarks: Yup.string().required('*N/A for Initial Processing'),
         resume: Yup.mixed()
             .required('*Resume is required'),
-        userId: Yup.number(),
+        userId: Yup.number().required('*Required'),
     });    
 
     const onSubmit = (applicantData) => {
