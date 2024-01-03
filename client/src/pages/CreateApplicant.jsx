@@ -6,10 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Spinner from '../components/Spinner';
 import { useTitle } from '../hooks/useTitle';
+import { useSelector } from 'react-redux';
 
 const CreateApplicant = () => {
 
     useTitle('Add Applicant')
+
+    const { signedUser: User } = useSelector(state => state.auth)
+    console.log(User.data.userId)
 
     const currentYear = new Date().getFullYear();
     const [days, setDays] = useState([]);
@@ -86,7 +90,7 @@ const CreateApplicant = () => {
         agencyRemarks: '',
         clientCompanyRemarks: '',
         resume: null, 
-        userId: '', 
+        userId: User.data.userId ? User.data.userId : '', 
     }
 
     const applicantSchema = Yup.object().shape({
@@ -153,6 +157,7 @@ const CreateApplicant = () => {
                             <Field 
                                 name="userId"
                                 className="bg-gray-50 border border-solid w-full p-2 my-2" 
+                                disabled
                                 />
                         </div>
                         <div className="w-full sm:w-1/4">

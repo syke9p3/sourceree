@@ -13,6 +13,7 @@ import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar.jsx';
 import PageNotFound from './pages/PageNotFound.jsx';
 import Applicants from './pages/Applicants.jsx';
+import Vendors from './pages/Vendors.jsx';
 
 const App = () => {
 
@@ -32,10 +33,11 @@ const App = () => {
                 <Sidebar open={open} toggleOpen={toggleOpen} />
                 <div className={`flex-1 ${open ? 'ml-[18rem]' : 'ml-[5rem]'} transition-padding duration-300 ease`}>
                     <Navbar />
-                    <div className='mx-10 my-10'>
+                    <div className='mx-10 my-36'>
                         <Routes>
                             <Route path='/' element={<Home />} />
                             <Route path='/applicants' element={<Applicants />} />
+                            <Route path='/vendors' element={<Vendors />} />
                             <Route path='/login' element={<Login />} />
                             <Route path='/signup' element={<Registration />} />
                             <Route path='/create/applicant' element={<CreateApplicant />} />

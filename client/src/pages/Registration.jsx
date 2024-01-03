@@ -3,12 +3,22 @@ import * as Yup from 'yup'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom';
 import { useTitle } from '../hooks/useTitle';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 const Registration = () => {
 
     useTitle('Sign Up Page')
 
     const naviagateTo = useNavigate()
+
+    const { signedUser, loading, error } = useSelector((state) => state.auth)
+
+    useEffect(()=> {
+        if (signedUser) {
+            naviagateTo('/')
+        }
+    }, [])
 
     const initialValues = {
         username: '',

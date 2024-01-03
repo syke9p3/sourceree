@@ -13,38 +13,16 @@ const Login = () => {
 
     useTitle('Login Page')
 
-    const [signUpSuccess, setSignUpSuccess] = useState(false);
-
-    let location = useLocation();
-    const params = new URLSearchParams(location.search);
-    const signUpParam  = params.get('signUpSuccess');
-    console.log('signUpSuccess: ', signUpSuccess)
-
-    useEffect(() => {
-        if (signUpParam === 'true') {
-            setSignUpSuccess(true);
-        }
-    }, [signUpParam]);
-
-    useEffect(() => {
-        if (signUpSuccess) {
-            toast.success('🎉 Registration Successful!', {
-                position: "bottom-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                });
-        }
-    }, [signUpSuccess]);
-
-    const { loading, error } = useSelector((state) => state.auth)
+    const { signedUser, loading, error } = useSelector((state) => state.auth)
     const dispatch = useDispatch()
 
     const naviagateTo = useNavigate()
+
+    useEffect(()=> {
+        if (signedUser) {
+            naviagateTo('/')
+        }
+    }, [])
 
     const [userData, setUserData] = useState({
         email: '',
@@ -77,6 +55,34 @@ const Login = () => {
                 dispatch(signInFailure(error))
             })
     }
+
+    const [signUpSuccess, setSignUpSuccess] = useState(false);
+
+    let location = useLocation();
+    const params = new URLSearchParams(location.search);
+    const signUpParam  = params.get('signUpSuccess');
+    console.log('signUpSuccess: ', signUpSuccess)
+
+    useEffect(() => {
+        if (signUpParam === 'true') {
+            setSignUpSuccess(true);
+        }
+    }, [signUpParam]);
+
+    useEffect(() => {
+        if (signUpSuccess) {
+            toast.success('🎉 Registration Successful!', {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                });
+        }
+    }, [signUpSuccess]);
 
     return (
         <div>

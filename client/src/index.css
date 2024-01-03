@@ -14,7 +14,6 @@ body {
 /* Width */
 ::-webkit-scrollbar {
     width: 5px;
-    box-shadow: 10px 10px 8px #888888;
 }
 
 /* Track */
@@ -33,18 +32,29 @@ body {
 }
 
 table {
-    @apply text-xs text-slate-700
+    @apply text-xs text-slate-700 table-auto
 }
+
 
 tr {
     @apply shadow-sm 
 }
 
 th {
-    @apply uppercase text-sky-300;
-    color: #92bfda;
+    @apply uppercase; 
+    /* color: #92bfda; */
 }
 
- td {
-    @apply px-3 py-6 text-center
+th > p {
+    @apply my-2;
+}
+
+td {
+    @apply px-3 py-6 text-center 
+}
+
+.badge {
+    padding: 2px 0;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem
 }
