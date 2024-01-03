@@ -14,8 +14,7 @@
     - in another terminal, type ` npm run dev `
 
 4. Paganahin Tailwind
-    - in terminal, type ` cd frontend `, ` npm install -D tailwindcss ` 
-    - another terminal, type ` npx tailwindcss -i ./frontend/src/input.css -o ./frontend/dist/output.css --watch `
+    - in terminal, type ` cd client `, ` npm install -D tailwindcss `
 
 5. Open html
     - in terminal, type 

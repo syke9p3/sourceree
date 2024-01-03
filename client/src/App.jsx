@@ -13,6 +13,7 @@ import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar.jsx';
 import PageNotFound from './pages/PageNotFound.jsx';
 import Applicants from './pages/Applicants.jsx';
+import Validation from './pages/Validation.jsx';
 
 const App = () => {
 
@@ -43,6 +44,7 @@ const App = () => {
                                 <Route path='/profile' element={<Profile />} />
                             </Route>
                             <Route path='/applicant/:id' element={<Applicant />} />
+                            <Route path='/validation' element={<Validation />}></Route>
                             <Route path='*' element={<PageNotFound />} />
                         </Routes>
                     </div>
