@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaChevronLeft, FaGear, FaPerson } from 'react-icons/fa6';
+import { FaCheck, FaCheckDouble, FaChevronLeft, FaGear, FaPerson } from 'react-icons/fa6';
 import ReactSVG from '../assets/react.svg';
 import { FaBox, FaCalendar, FaChartPie, FaFile } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux';
 const Sidebar = ({ open, toggleOpen }) => {
 
     const { signedUser: User } = useSelector(state => state.auth)
-
 
     const Menus = [
         {
@@ -27,15 +26,10 @@ const Sidebar = ({ open, toggleOpen }) => {
             icon: <FaBox size={20} />
         },
         {
-            title: 'Calendar',
-            link: '/calendar',
-            icon: <FaCalendar size={20} />,
+            title: 'Validation',
+            link: '/validation',
+            icon: <FaCheckDouble size={20} />,
             gap: true
-        },
-        {
-            title: 'File',
-            link: '/file',
-            icon: <FaFile size={20} />
         },
         {
             title: 'Settings',
