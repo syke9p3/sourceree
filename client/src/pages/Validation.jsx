@@ -18,11 +18,11 @@ const Validation = () => {
                     <button className={`cursor-pointer rounded px-4 py-2 font-medium 
                         ${activeTab === 'active-pending' ? "text-white bg-blue-500" : ''}`} onClick={() => toggleActive("active-pending")}>Active-Pending</button>
                     <button className={`cursor-pointer rounded px-4 py-2 font-medium
-                        ${activeTab === 'active-valid' ? "text-white bg-blue-500" : ''}`} onClick={() => toggleActive("active-valid")}>Active-Valid</button>
+                        ${activeTab === 'active-passed' ? "text-white bg-blue-500" : ''}`} onClick={() => toggleActive("active-passed")}>Active-Passed</button>
                     <button className={`cursor-pointer rounded px-4 py-2 font-medium
-                        ${activeTab === 'active-invalid' ? "text-white bg-blue-500" : ''}`} onClick={() => toggleActive("active-invalid")}>Active-Invalid</button>
+                        ${activeTab === 'active-rejected' ? "text-white bg-blue-500" : ''}`} onClick={() => toggleActive("active-rejected")}>Active-Rejected</button>
                     <button className={`cursor-pointer rounded px-4 py-2 font-medium
-                        ${activeTab === 'inactive-invalid' ? "text-white bg-blue-500" : ''}`} onClick={() => toggleActive("inactive-invalid")}>Inactive-Invalid</button>
+                        ${activeTab === 'inactive-rejected' ? "text-white bg-blue-500" : ''}`} onClick={() => toggleActive("inactive-rejected")}>Inactive-Rejected</button>
                 </div>
                 <div>
                     

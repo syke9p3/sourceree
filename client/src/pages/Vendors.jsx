@@ -23,11 +23,13 @@ const Vendors = () => {
                     <button className={`cursor-pointer rounded px-4 py-2 font-medium 
                         ${activeTab === 'all' ? "text-white bg-blue-500" : ''}`} onClick={() => toggleActive("all")}>Show All</button>
                     <button className={`cursor-pointer rounded px-4 py-2 font-medium 
-                        ${activeTab === 'leads' ? "text-white bg-blue-500" : ''}`} onClick={() => toggleActive("leads")}>Leads</button>
+                        ${activeTab === 'company1' ? "text-white bg-blue-500" : ''}`} onClick={() => toggleActive("company1")}>Company 1</button>
                     <button className={`cursor-pointer rounded px-4 py-2 font-medium
-                        ${activeTab === 'apps' ? "text-white bg-blue-500" : ''}`} onClick={() => toggleActive("apps")}>Apps</button>
+                        ${activeTab === 'company2' ? "text-white bg-blue-500" : ''}`} onClick={() => toggleActive("company2")}>Company 2</button>
                     <button className={`cursor-pointer rounded px-4 py-2 font-medium
-                        ${activeTab === 'calls' ? "text-white bg-blue-500" : ''}`} onClick={() => toggleActive("calls")}>Calls</button>
+                        ${activeTab === 'company3' ? "text-white bg-blue-500" : ''}`} onClick={() => toggleActive("company3")}>Company 3</button>
+                        <button className={`cursor-pointer rounded px-4 py-2 font-medium
+                        ${activeTab === 'company4' ? "text-white bg-blue-500" : ''}`} onClick={() => toggleActive("company4")}>Company 4</button>
                 </div>
                 <div>
 

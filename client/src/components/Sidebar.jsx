@@ -29,12 +29,12 @@ const Sidebar = ({ open, toggleOpen }) => {
             title: 'Validation',
             link: '/validation',
             icon: <FaCheckDouble size={20} />,
-            gap: true
         },
         {
             title: 'Settings',
             link: '/settings',
-            icon: <FaGear size={20} />
+            icon: <FaGear size={20} />,
+            gap: true
         },
     ];
 

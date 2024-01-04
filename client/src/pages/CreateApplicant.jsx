@@ -23,6 +23,8 @@ const CreateApplicant = () => {
     const [civilstatus, setCivilStatus] = useState([]);
     const [education, setEducation] = useState([]);
     const [applicantstatus, setApplicantStatus] = useState([]);
+    const [clientcompany, setClientCompany] = useState([]);
+    const [sites, setSite] = useState([]);
 
     useEffect(() => {
         const daysArray = Array.from({ length: 31 }, (_, i) => i + 1);
@@ -54,9 +56,20 @@ const CreateApplicant = () => {
         setEducation(educationArray);
 
         const applicantStatusArray = [
-            'Active-Pending', 'Active-Valid', 'Active-Invalid', 'Inactive-Invalid'
+            'Active-Pending', 'Active-Passed', 'Active-Rejected', 'Inactive-Rejected'
         ];
         setApplicantStatus(applicantStatusArray);
+
+        const clientCompanyArray = [
+            'Company 1', 'Company 2', 'Company 3', 'Company 4'
+        ];
+        setClientCompany(clientCompanyArray);
+
+        const siteArray = [
+            'Aura', 'Ayala', 'Antipolo', 'Bacolod', 'Baguio', 'CDO', 'Cebu IT Park', 'Davao',
+            'EDSA Greenfield', 'Fairview', 'McKinley', 'MOA', 'Rockwell', 'Silver City', 'Sucat'
+        ];
+        setSite(siteArray);
     }, []);
 
     let navigateTo = useNavigate()
@@ -444,8 +457,14 @@ const CreateApplicant = () => {
                                 className='text-red-500 ml-2 text-xs' />
                             <Field 
                                 name="clientCompany" 
+                                as="select"
                                 className="bg-gray-50 border border-solid w-full p-2 my-2" 
-                                />
+                                >
+                                <option value="">Select Client Company</option>
+                                {clientcompany.map((clientcompany) => (
+                                    <option key={clientcompany} value={clientcompany}>{clientcompany}</option>
+                                ))}
+                            </Field>
                         </div>
                         <div className="w-full sm:w-1/4">
                             <label htmlFor="clientCompanySite">Site</label>
@@ -455,8 +474,14 @@ const CreateApplicant = () => {
                                 className='text-red-500 ml-2 text-xs' />
                             <Field 
                                 name="clientCompanySite" 
+                                as="select"
                                 className="bg-gray-50 border border-solid w-full p-2 my-2" 
-                                />
+                                >
+                                <option value="">Select Site</option>
+                                {sites.map((sites) => (
+                                    <option key={sites} value={sites}>{sites}</option>
+                                ))}
+                            </Field>
                         </div>
                         <div className="w-full sm:w-1/4">
                             <label htmlFor="applicantStatus">Status</label>

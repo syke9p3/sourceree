@@ -49,8 +49,8 @@ const Home = () => {
                         <FaCalendar className="text-white" />
                     </div>
                     <div>
-                        <h2 className="text-3xl font-semibold text-cyan-500">25</h2>
-                        <p className='text-xs text-gray-500 font-semibold uppercase'>Scheduled</p>
+                        <h2 className="text-3xl font-semibold text-cyan-500">26</h2>
+                        <p className='text-xs text-gray-500 font-semibold uppercase'>Pending</p>
                     </div>
                 </div>
 
