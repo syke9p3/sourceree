@@ -1,21 +1,23 @@
-Hello guys. Eto ay isang testing na ginawa ko lang para mag-setup ng isang simple server at pagdidisplay ng data sa html.
+# Updated Guide
 
-Para mapagana to:
-
-1. Magbukas ng terminal, type ` npm install `
-
-2. Gumawa ng mock data sa mysql
-    - open mysql sa phpmyadmin gamit xampp
+1. Set up ng xampp
+    - i-save ang project sa /xampp/htdocs (directory)
+    - if may error sa xampp, open 'msc' or services, find 'MySQL80' then click stop running
+    - open phpmyadmin
     - create database named 'playground'
-    - gamitin yung *employees.sql* sa data folder
+    - gamitin yung *playground.sql* sa backend/data folder
+
+2. Mag-install ng dependencies
+    - magbukas ng terminal, type ` npm install `
+    - another terminal, type ` cd client `, ` npm install -D tailwindcss `
 
 3. Open server
-    - In another terminal, type ` npm run dev `
+    - make sure naka-open ang xampp
+    - in another terminal, type ` npm run dev `
+    - 'Connected to MySQL!' sa terminal means gumana
 
 4. Open html
-    - use five server or kung pano kayo magbukas ng html ang frontend/src/index.html
-
-5. Paganahin Tailwind
-    - in terminal, type `cd frontend`, `npm install -D tailwindcss` 
-    ` npx tailwindcss -i ./frontend/src/input.css -o ./frontend/dist/output.css --watch `
-    - Dapat maging pula ang kulay ng title para makita kung gumagana ang tailwind
+    - in terminal, type 
+    - ` cd client `
+    - ` npm install `
+    - ` npm run dev `
