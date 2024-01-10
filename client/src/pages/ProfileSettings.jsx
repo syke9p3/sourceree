@@ -8,9 +8,9 @@ import Spinner from '../components/Spinner';
 import { useTitle } from '../hooks/useTitle';
 import { useSelector } from 'react-redux';
 
-const CreateApplicant = () => {
+const ProfileSettings = ({ user, onUpdateUser }) => {
 
-    useTitle('Add Applicant')
+    useTitle('Profile Settings')
 
     const { signedUser: User } = useSelector(state => state.auth)
     console.log(User.data.userId)
@@ -21,10 +21,6 @@ const CreateApplicant = () => {
     const [years, setYears] = useState([]);
     const [sex, setSex] = useState([]);
     const [civilstatus, setCivilStatus] = useState([]);
-    const [education, setEducation] = useState([]);
-    // const [applicantstatus, setApplicantStatus] = useState([]);
-    // const [clientcompany, setClientCompany] = useState([]);
-    // const [sites, setSite] = useState([]);
 
     useEffect(() => {
         const daysArray = Array.from({ length: 31 }, (_, i) => i + 1);
@@ -48,28 +44,6 @@ const CreateApplicant = () => {
             'Single', 'Married', 'Divorced', 'Widowed'
         ];
         setCivilStatus(civilStatusArray);
-
-        const educationArray = [
-            'Elementary Graduate', 'High School Graduate', 'High School Undergraduate', 'College Graduate',
-            'College Undergraduate', "Master's Degree", "Vocational"
-        ];
-        setEducation(educationArray);
-
-        // const applicantStatusArray = [
-        //     'Active-Pending', 'Active-Passed', 'Active-Rejected', 'Inactive-Rejected'
-        // ];
-        // setApplicantStatus(applicantStatusArray);
-
-        // const clientCompanyArray = [
-        //     'Company 1', 'Company 2', 'Company 3', 'Company 4'
-        // ];
-        // setClientCompany(clientCompanyArray);
-
-        // const siteArray = [
-        //     'Aura', 'Ayala', 'Antipolo', 'Bacolod', 'Baguio', 'CDO', 'Cebu IT Park', 'Davao',
-        //     'EDSA Greenfield', 'Fairview', 'McKinley', 'MOA', 'Rockwell', 'Silver City', 'Sucat'
-        // ];
-        // setSite(siteArray);
     }, []);
 
     let navigateTo = useNavigate()
@@ -89,65 +63,27 @@ const CreateApplicant = () => {
         sex: '',
         contact: '',
         email: '',
-        altEmail: '',
-        homeAddress: '',
-        highestEducationalAttainment: '',
-        lastSchoolAttended: '',
-        bpoExpYears: '',
-        bpoExpPosition: '',
-        endorsementDate: '',
-        interviewTime: '',
-        resume: '',
+        password: '',
         userId: User.data.userId ? User.data.userId : '', 
     }
 
-    const applicantSchema = Yup.object().shape({
-        firstName: Yup.string().required('*First Name is required'),
-        middleName: Yup.string().required('*Middle Name is required'),
-        lastName: Yup.string().required('*Last Name is required'),
-        birthMonth: Yup.string().required('*Birth Month is required'),
-        birthDay: Yup.number().required('*Birth Day is required'),
-        birthYear: Yup.number().required('*Birth Year is required'),
-        age: Yup.number().required('*Age is required'),
-        civilStatus: Yup.string()
-            .required('*Civil Status is required'),
-        sex: Yup.string()
-            .required('*Sex is required'),
-        contact: Yup.number().required('*Contact is required'),
-        email: Yup.string().email('*Invalid email').required('*Email is required'),
-        altEmail: Yup.string().email('*Invalid email').required('*Alternate Email is required'),
-        homeAddress: Yup.string().required('*Home Address is required'),
-        highestEducationalAttainment: Yup.string().required('*Required'),
-        lastSchoolAttended: Yup.string().required('*Last School Attended is required'),
-        bpoExpYears: Yup.number().required('*BPO Experience Years is required'),
-        bpoExpPosition: Yup.string().required('*BPO Experience Position is required'),
-        endorsementDate: Yup.date().required('*Endorsement Date is required'),
-        interviewTime: Yup.string().required('*Interview Time is required'),
-        resume: Yup.mixed().required('*Resume is required in PDF format'),
-        userId: Yup.number().required('*Required'),
-    });    
-
-    const onSubmit = (applicantData) => {
-        setLoading(true);
-
-        axios.post('http://localhost:8080/api/applicants', applicantData)
+    const onSubmit = (updatedUserData) => {
+        axios.put(`http://localhost:8080/api/users/`, updatedUserData)
             .then(response => {
-                console.log('Applicant created:', response.data);
-                navigateTo(`/?success=${response.data}`);
-                setLoading(false);
+                console.log('User updated:', response.data);
+                // Call the callback function to notify the parent of the update
+                onUpdateUser();
             })
-            .catch(err => {
-                console.error('Error adding applicant:', err);
-                setError(err);
-                setLoading(false);
+            .catch(error => {
+                console.error('Error updating user:', error);
             });
     };
 
     return (
         <div>
-            <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={applicantSchema}>
-                <Form className='max-w-6xl border-2 border-solid shadow-lg flex flex-col gap-2 mx-auto p-6 bg-white'>
-                    <h3 className="font-bold text-xl my-4">Create Applicant Form</h3>
+            <Formik initialValues={initialValues} onSubmit={onSubmit}>
+                <Form className='max-w-4xl border-2 border-solid shadow-lg flex flex-col gap-2 mx-auto p-6 bg-white'>
+                    <h3 className="font-bold text-xl my-4">Update Profile</h3>
 
                     <div className="flex flex-wrap gap-4">
                         <div className="w-full sm:w-1/4">
@@ -162,29 +98,6 @@ const CreateApplicant = () => {
                                 disabled
                                 />
                         </div>
-                        <div className="w-full sm:w-1/4">
-                            <label htmlFor="endorsementDate">Date of Endorsement</label>
-                            <ErrorMessage 
-                                name="endorsementDate" 
-                                component="span" 
-                                className='text-red-500 ml-2 text-xs' />
-                            <Field 
-                                name="endorsementDate"
-                                type="date"
-                                className="bg-gray-50 border border-solid w-full p-2 my-2"
-                                />
-                        </div>
-                        <div className="w-full sm:w-1/4">
-                            <label htmlFor="interviewTime">Time of Pre-screening Interview</label>
-                            <ErrorMessage 
-                                name="interviewTime" 
-                                component="span" 
-                                className='text-red-500 ml-2 text-xs' />
-                            <Field 
-                                name="interviewTime" 
-                                className="bg-gray-50 border border-solid w-full p-2 my-2"
-                                />
-                        </div>
                     </div>
 
                     <div className="flex flex-wrap gap-4">
@@ -196,7 +109,6 @@ const CreateApplicant = () => {
                                 className='text-red-500 ml-2 text-xs' />
                             <Field 
                                 name="firstName" 
-                                placeholder="John" 
                                 className="bg-gray-50 border border-solid w-full p-2 my-2" 
                                 />
                         </div>
@@ -208,7 +120,6 @@ const CreateApplicant = () => {
                                 className='text-red-500 ml-2 text-xs' />
                             <Field 
                                 name="middleName" 
-                                placeholder="Doe" 
                                 className="bg-gray-50 border border-solid w-full p-2 my-2" 
                                 />
                         </div>
@@ -220,7 +131,6 @@ const CreateApplicant = () => {
                                 className='text-red-500 ml-2 text-xs' />
                             <Field 
                                 name="lastName" 
-                                placeholder="Smith" 
                                 className="bg-gray-50 border border-solid w-full p-2 my-2" 
                                 />
                         </div>
@@ -352,112 +262,12 @@ const CreateApplicant = () => {
                                 className="bg-gray-50 border border-solid w-full p-2 my-2" 
                                 />
                         </div>
-                        <div className="w-full sm:w-1/4">
-                            <label htmlFor="altEmail">Alternative Email</label>
-                            <ErrorMessage 
-                                name="altEmail" 
-                                component="span" 
-                                className='text-red-500 ml-2 text-xs' />
-                            <Field 
-                                name="altEmail" 
-                                type="email"
-                                className="bg-gray-50 border border-solid w-full p-2 my-2" 
-                                />
-                        </div>
                     </div>
 
-                    <div className="flex flex-wrap gap-4">
-                        <div className="w-full sm:w-1/2">
-                            <label htmlFor="homeAddress">Home Address</label>
-                            <ErrorMessage 
-                                name="homeAddress" 
-                                component="span" 
-                                className='text-red-500 ml-2 text-xs' />
-                            <Field 
-                                name="homeAddress"
-                                className="bg-gray-50 border border-solid w-full p-2 my-2" 
-                                />
-                        </div>
+                    <div className="flex justify-end gap-2 mt-6">
+                        <button className="bg-yellow-500 font-bold text-white rounded p-2 " type="submit">Update Changes</button>
+                        <button className="bg-gray-500 font-bold text-white rounded p-2 " onClick={(e) => onUpdateUser()}>Cancel</button>
                     </div>
-
-                    <div className="flex flex-wrap gap-4">
-                        <div className="w-full sm:w-1/3">
-                            <label htmlFor="highestEducationalAttainment">Highest Educational Attainment</label>
-                            <ErrorMessage 
-                                name="highestEducationalAttainment" 
-                                component="span" 
-                                className='text-red-500 ml-2 text-xs' />
-                            <Field 
-                                name="highestEducationalAttainment" 
-                                as="select"
-                                className="bg-gray-50 border border-solid w-full p-2 my-2" 
-                                >
-                                <option value="">Select Educational Attainment</option>
-                                {education.map((education) => (
-                                    <option key={education} value={education}>{education}</option>
-                                ))}
-                            </Field>
-                        </div>
-                        <div className="w-full sm:w-1/3">
-                            <label htmlFor="lastSchoolAttended">Last School Attended</label>
-                            <ErrorMessage 
-                                name="lastSchoolAttended" 
-                                component="span" 
-                                className='text-red-500 ml-2 text-xs' />
-                            <Field 
-                                name="lastSchoolAttended"
-                                className="bg-gray-50 border border-solid w-full p-2 my-2" 
-                                />
-                        </div>
-                    </div>
-
-                    <div className="flex flex-wrap gap-4">
-                        <div className="w-full sm:w-1/3">
-                            <label htmlFor="bpoExpYears">Total BPO Experience in Years</label>
-                            <ErrorMessage 
-                                name="bpoExpYears" 
-                                component="span" 
-                                className='text-red-500 ml-2 text-xs' />
-                            <Field 
-                                name="bpoExpYears" 
-                                type="number"
-                                className="bg-gray-50 border border-solid w-full p-2 my-2" 
-                                />
-                        </div>
-                        <div className="w-full sm:w-1/3">
-                            <label htmlFor="bpoExpPosition">Position</label>
-                            <ErrorMessage 
-                                name="bpoExpPosition" 
-                                component="span" 
-                                className='text-red-500 ml-2 text-xs' />
-                            <Field 
-                                name="bpoExpPosition"
-                                className="bg-gray-50 border border-solid w-full p-2 my-2" 
-                                />
-                        </div>
-                    </div>
-
-                    <div className="flex flex-wrap gap-4">
-                        <div className="w-full sm:w-1/4">
-                            <label htmlFor="resume">Resume</label>
-                            <ErrorMessage 
-                                name="resume" 
-                                component="span" 
-                                className='text-red-500 ml-2 text-xs' />
-                            <Field 
-                                name="resume" 
-                                type="file"
-                                accept=".pdf"
-                                className="bg-gray-50 border border-solid w-full p-2 my-2" 
-                                />
-                        </div>
-                    </div>
-
-                    <button className="bg-green-600 font-bold text-white rounded p-2 m-2 disabled:opacity-80 " disabled={loading} type="submit">
-                        {loading ?
-                            <p className='font-normal'><Spinner /> Loading...</p>
-                            : <p>+ Create Applicant</p>}
-                    </button>
                 </Form>
             </Formik>
         </div>
@@ -465,4 +275,5 @@ const CreateApplicant = () => {
 
 };
 
-export default CreateApplicant;
+export default ProfileSettings;
+

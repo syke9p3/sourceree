@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+import { useTitle } from '../hooks/useTitle';
 
 const Validation = () => {
+
+    useTitle('Validation')
 
     const [activeTab, setActiveTab] = useState("all")
 

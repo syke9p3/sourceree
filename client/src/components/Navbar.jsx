@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import ReactSVG from '../assets/react.svg';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { signOutFailure, signOutStart, signOutSuccess } from '../app/auth/authSlice.js';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios'
 import { FaDoorOpen, FaUser, FaSearch } from 'react-icons/fa';
 import { FaArrowRightFromBracket } from 'react-icons/fa6';
 
@@ -63,9 +66,12 @@ export default Navbar
 
 const UserProfileDropdown = ({ username }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const { loading, error, signedUser: User } = useSelector(state => state.auth)
+    const dispatch = useDispatch()
+    const navigateTo = useNavigate()
 
     const Menus = [
-        { option: 'My Profile', icon: <FaUser /> },
+       // { option: 'My Profile', icon: <FaUser /> },
         { option: 'Logout', icon: <FaArrowRightFromBracket /> },
     ]
 
@@ -73,9 +79,25 @@ const UserProfileDropdown = ({ username }) => {
         setIsOpen(!isOpen);
     };
 
-    const handleLogout = () => {
-        console.log('Logout clicked');
-    };
+    const handleLogout = async () => {
+        console.log('logging out')
+        dispatch(signOutStart())
+        axios.post('http://localhost:8080/api/auth/signout')
+        .then((res) => {
+            console.log('logging out axios')
+            if(res.success === false) {
+                dispatch(signOutFailure(res.message))
+                return
+            } else {
+                console.log('no error')
+                dispatch(signOutSuccess())
+                navigateTo('/')
+            }
+        }).catch((err) => {
+            console.log(err)
+            dispatch(signOutFailure(err))
+        })
+    }
 
     return (
         <div className="relative inline-block text-left">

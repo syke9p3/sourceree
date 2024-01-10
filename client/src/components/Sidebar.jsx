@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaCheck, FaCheckDouble, FaChevronLeft, FaGear, FaPerson } from 'react-icons/fa6';
 import ReactSVG from '../assets/react.svg';
-import { FaBox, FaCalendar, FaChartPie, FaFile } from 'react-icons/fa';
+import { FaBox, FaCalendar, FaChartPie, FaFile, FaUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -31,9 +31,9 @@ const Sidebar = ({ open, toggleOpen }) => {
             icon: <FaCheckDouble size={20} />,
         },
         {
-            title: 'Settings',
-            link: '/settings',
-            icon: <FaGear size={20} />,
+            title: 'Profile Settings',
+            link: '/profile-settings',
+            icon: <FaUser size={20} />,
             gap: true
         },
     ];

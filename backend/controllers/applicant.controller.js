@@ -66,12 +66,6 @@ export const updateApplicant = async (req, res, next) => {
             bpoExpPosition,
             endorsementDate,
             interviewTime,
-            clientCompany,
-            clientCompanySite,
-            applicantStatus,
-            agencyRemarks,
-            clientCompanyRemarks,
-            resume,
             userId
         } = req.body;
 
@@ -102,12 +96,6 @@ export const updateApplicant = async (req, res, next) => {
         applicant.bpoExpPosition = bpoExpPosition;
         applicant.endorsementDate = endorsementDate;
         applicant.interviewTime = interviewTime;
-        applicant.clientCompany = clientCompany;
-        applicant.clientCompanySite = clientCompanySite;
-        applicant.applicantStatus = applicantStatus;
-        applicant.agencyRemarks = agencyRemarks;
-        applicant.clientCompanyRemarks = clientCompanyRemarks;
-        applicant.resume = resume;        
         applicant.userId = userId;
 
         // Save the updated applicant to the database

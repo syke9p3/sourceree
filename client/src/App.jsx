@@ -15,6 +15,7 @@ import PageNotFound from './pages/PageNotFound.jsx';
 import Applicants from './pages/Applicants.jsx';
 import Validation from './pages/Validation.jsx';
 import Vendors from './pages/Vendors.jsx';
+import ProfileSettings from './pages/ProfileSettings.jsx';
 
 const App = () => {
 
@@ -47,6 +48,7 @@ const App = () => {
                             </Route>
                             <Route path='/applicant/:id' element={<Applicant />} />
                             <Route path='/validation' element={<Validation />}></Route>
+                            <Route path='/profile-settings' element={<ProfileSettings />}></Route>
                             <Route path='*' element={<PageNotFound />} />
                         </Routes>
                     </div>

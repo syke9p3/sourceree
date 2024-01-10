@@ -95,26 +95,6 @@ const Applicant = sequelize.define("Applicant" , {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    clientCompany:{
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    clientCompanySite:{
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    applicantStatus:{
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    agencyRemarks:{
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
-    clientCompanyRemarks:{
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
     resume:{
         type: DataTypes.TEXT,
         allowNull: false,

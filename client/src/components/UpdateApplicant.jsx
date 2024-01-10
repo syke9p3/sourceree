@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup'
+import { useSelector } from 'react-redux';
 
 const UpdateApplicant = ({ applicant, onUpdateApplicant }) => {
 
     console.log(`To be edited: ${applicant}`)
+    const { signedUser: User } = useSelector(state => state.auth)
 
     const currentYear = new Date().getFullYear();
     const [days, setDays] = useState([]);
@@ -14,7 +16,6 @@ const UpdateApplicant = ({ applicant, onUpdateApplicant }) => {
     const [sex, setSex] = useState([]);
     const [civilstatus, setCivilStatus] = useState([]);
     const [education, setEducation] = useState([]);
-    const [applicantstatus, setApplicantStatus] = useState([]);
 
     useEffect(() => {
         const daysArray = Array.from({ length: 31 }, (_, i) => i + 1);
@@ -44,41 +45,30 @@ const UpdateApplicant = ({ applicant, onUpdateApplicant }) => {
             'College Undergraduate', "Master's Degree", "Vocational"
         ];
         setEducation(educationArray);
-
-        const applicantStatusArray = [
-            'Active-Pending', 'Active-Valid', 'Active-Invalid', 'Inactive-Invalid'
-        ];
-        setApplicantStatus(applicantStatusArray);
     }, []);
 
 
     const initialValues = {
-        firstName: '',
-        middleName: '',
-        lastName: '',
-        birthMonth: '',
-        birthDay: '',
-        birthYear: '',
-        age: '',
-        civilStatus: '',
-        sex: '',
-        contact: '',
-        email: '',
-        altEmail: '',
-        homeAddress: '',
-        highestEducationalAttainment: '',
-        lastSchoolAttended: '',
-        bpoExpYears: '',
-        bpoExpPosition: '',
-        endorsementDate: '',
-        interviewTime: '',
-        clientCompany: '',
-        clientCompanySite: '',
-        applicantStatus: '',
-        agencyRemarks: '',
-        clientCompanyRemarks: '',
-        resume: null, 
-        userId: '', 
+        firstName: applicant.firstName,
+        middleName: applicant.middleName,
+        lastName: applicant.lastName,
+        birthMonth: applicant.birthMonth,
+        birthDay: applicant.birthDay,
+        birthYear: applicant.birthYear,
+        age: applicant.age,
+        civilStatus: applicant.civilStatus,
+        sex: applicant.sex,
+        contact: applicant.contact,
+        email: applicant.email,
+        altEmail: applicant.altEmail,
+        homeAddress: applicant.homeAddress,
+        highestEducationalAttainment: applicant.highestEducationalAttainment,
+        lastSchoolAttended: applicant.lastSchoolAttended,
+        bpoExpYears: applicant.bpoExpYears,
+        bpoExpPosition: applicant.bpoExpPosition,
+        endorsementDate: applicant.endorsementDate,
+        interviewTime: applicant.interviewTime,
+        userId: User.data.userId ? User.data.userId : '', 
     }
 
     const applicantSchema = Yup.object().shape({
@@ -103,13 +93,6 @@ const UpdateApplicant = ({ applicant, onUpdateApplicant }) => {
         bpoExpPosition: Yup.string().required('*BPO Experience Position is required'),
         endorsementDate: Yup.date().required('*Endorsement Date is required'),
         interviewTime: Yup.string().required('*Interview Time is required'),
-        clientCompany: Yup.string().required('*Client Company is required'),
-        clientCompanySite: Yup.string().required('*Client Company Site is required'),
-        applicantStatus: Yup.string().required('*Applicant Status is required'),
-        agencyRemarks: Yup.string().required('*N/A for Initial Processing'),
-        clientCompanyRemarks: Yup.string().required('*N/A for Initial Processing'),
-        resume: Yup.mixed()
-            .required('*Resume is required'),
         userId: Yup.number(),
     });
 
@@ -126,9 +109,9 @@ const UpdateApplicant = ({ applicant, onUpdateApplicant }) => {
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white p-6 shadow-lg rounded-lg">
-                    <h3 className="font-bold text-2xl my-6 mb-8">Update Applicant Form</h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 overflow-auto">
+            <div className="bg-white p-6 shadow-lg rounded-lg max-h-full max-w-screen-sm overflow-y-auto" style={{ maxWidth: '400px' }}>
+                <h3 className="font-bold text-2xl my-6 mb-8">Update Applicant Form</h3>
                 <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={applicantSchema}>
                 <Form>
                     <div>
@@ -217,6 +200,148 @@ const UpdateApplicant = ({ applicant, onUpdateApplicant }) => {
                                     <option key={year} value={year}>{year}</option>
                                 ))}
                             </Field>
+                    </div>
+                    <div>
+                        <label htmlFor="age">Age</label>
+                            <ErrorMessage 
+                                name="age" 
+                                component="span" 
+                                className='text-red-500 ml-2 text-xs' />
+                            <Field 
+                                name="age"
+                                className="bg-gray-50 border border-solid w-full p-2 my-2" 
+                                />
+                    </div>
+                    <div>
+                        <label htmlFor="civilStatus">Civil Status</label>
+                            <ErrorMessage 
+                                name="civilStatus" 
+                                component="span" 
+                                className='text-red-500 ml-2 text-xs' />
+                            <Field 
+                                name="civilStatus" 
+                                as="select" 
+                                className="bg-gray-50 border border-solid w-full p-2 my-2"
+                            >
+                                <option value="">Select Civil Status</option>
+                                {civilstatus.map((civilstatus) => (
+                                    <option key={civilstatus} value={civilstatus}>{civilstatus}</option>
+                                ))}
+                            </Field>
+                    </div>
+                    <div>
+                        <label htmlFor="sex">Sex</label>
+                            <ErrorMessage 
+                                name="sex" 
+                                component="span" 
+                                className='text-red-500 ml-2 text-xs' />
+                            <Field 
+                                name="sex" 
+                                as="select" 
+                                className="bg-gray-50 border border-solid w-full p-2 my-2"
+                            >
+                                <option value="">Select Sex</option>
+                                {sex.map((sex) => (
+                                    <option key={sex} value={sex}>{sex}</option>
+                                ))}
+                            </Field>
+                    </div>
+                    <div>
+                        <label htmlFor="contact">Contact</label>
+                            <ErrorMessage 
+                                name="contact" 
+                                component="span" 
+                                className='text-red-500 ml-2 text-xs' />
+                            <Field 
+                                name="contact"
+                                className="bg-gray-50 border border-solid w-full p-2 my-2" 
+                                />
+                    </div>
+                    <div>
+                            <label htmlFor="email">Email</label>
+                            <ErrorMessage 
+                                name="email" 
+                                component="span" 
+                                className='text-red-500 ml-2 text-xs' />
+                            <Field 
+                                name="email" 
+                                type="email"
+                                className="bg-gray-50 border border-solid w-full p-2 my-2" 
+                                />
+                    </div>
+                    <div>
+                        <label htmlFor="altEmail">Alternative Email</label>
+                        <ErrorMessage 
+                            name="altEmail" 
+                            component="span" 
+                            className='text-red-500 ml-2 text-xs' />
+                        <Field 
+                            name="altEmail" 
+                            type="email"
+                            className="bg-gray-50 border border-solid w-full p-2 my-2" 
+                            />
+                    </div>
+                    <div>
+                        <label htmlFor="homeAddress">Home Address</label>
+                        <ErrorMessage 
+                            name="homeAddress" 
+                            component="span" 
+                            className='text-red-500 ml-2 text-xs' />
+                        <Field 
+                            name="homeAddress"
+                            className="bg-gray-50 border border-solid w-full p-2 my-2" 
+                            />
+                    </div>
+                    <div>
+                        <label htmlFor="highestEducationalAttainment">Highest Educational Attainment</label>
+                        <ErrorMessage 
+                            name="highestEducationalAttainment" 
+                            component="span" 
+                            className='text-red-500 ml-2 text-xs' />
+                        <Field 
+                            name="highestEducationalAttainment" 
+                            as="select"
+                            className="bg-gray-50 border border-solid w-full p-2 my-2" 
+                            >
+                            <option value="">Select Educational Attainment</option>
+                            {education.map((education) => (
+                                <option key={education} value={education}>{education}</option>
+                            ))}
+                        </Field>
+                    </div>
+                    <div>
+                        <label htmlFor="lastSchoolAttended">Last School Attended</label>
+                        <ErrorMessage 
+                            name="lastSchoolAttended" 
+                            component="span" 
+                            className='text-red-500 ml-2 text-xs' />
+                        <Field 
+                            name="lastSchoolAttended"
+                            className="bg-gray-50 border border-solid w-full p-2 my-2" 
+                            />
+                    </div>
+                    <div>
+                        <label htmlFor="bpoExpYears">Total BPO Experience in Years</label>
+                        <ErrorMessage 
+                            name="bpoExpYears" 
+                            component="span" 
+                            className='text-red-500 ml-2 text-xs' />
+                        <Field 
+                            name="bpoExpYears" 
+                            type="number"
+                            className="bg-gray-50 border border-solid w-full p-2 my-2" 
+                            />
+                    </div>
+                    <div>
+                        <label htmlFor="bpoExpPosition">Position</label>
+                        <ErrorMessage 
+                            name="bpoExpPosition" 
+                            component="span" 
+                            className='text-red-500 ml-2 text-xs' />
+                        <Field 
+                            name="bpoExpPosition"
+                            className="bg-gray-50 border border-solid w-full p-2 my-2" 
+                            />
                     </div>
                     <div className="flex justify-end gap-2 mt-6">
                         <button className="bg-yellow-500 font-bold text-white rounded p-2 " type="submit">Update Applicant</button>

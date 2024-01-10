@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import Badge from './../components/Badge';
 import { FaGear } from 'react-icons/fa6';
+import { useTitle } from '../hooks/useTitle';
 
 const Vendors = () => {
+
+    useTitle('Vendors')
 
     const [activeTab, setActiveTab] = useState("all")
 

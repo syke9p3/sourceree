@@ -12,8 +12,8 @@ export const getUsers = async (req, res, next) => {
 
 export const getUserById = async (req, res, next) => {
     try {
-      const userId = req.params.id; // Extract the ID from request parameters
-      const user = await User.findByPk(userId); //same as 'SELECT * FROM users WHERE id = ?'
+      const id = req.params.id; // Extract the ID from request parameters
+      const user = await User.findByPk(id); //same as 'SELECT * FROM users WHERE id = ?'
   
       if (!user) {
         return res.status(404).json({ error: 'user not found' });
@@ -28,17 +28,16 @@ export const getUserById = async (req, res, next) => {
 
 export const updateUser = async (req, res, next) => {
     try {
-      const userId = req.params.id;
+      const id = req.params.id;
       const { name, email, password } = req.body;
   
       // Find the user by ID
-      const user = await User.findByPk(userId);
+      const user = await User.findByPk(id);
   
       if (!user) {
         return res.status(404).json({ error: 'user not found' });
       }
   
-      // Update user attributes
       user.name = name;
       user.email = email;
       user.password = password;
@@ -56,10 +55,10 @@ export const updateUser = async (req, res, next) => {
 
 export const deleteUser = async (req, res, next) => {
     try {
-      const userId = req.params.id;
+      const id = req.params.id;
   
       // Find the user by ID
-      const user = await User.findByPk(userId);
+      const user = await User.findByPk(id);
   
       if (!user) {
         return res.status(404).json({ error: 'user not found' });
