@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { useContext, useState } from 'react'
+import { ThemeContext } from './main.jsx'
+import { useSelector } from 'react-redux'
 import Home from "./pages/Home";
 import CreateApplicant from './pages/CreateApplicant.jsx';
 import Applicant from './components/Applicant';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
-import { useContext, useState } from 'react';
-import { ThemeContext } from './main.jsx'
-import { useSelector } from 'react-redux';
 import Profile from './pages/Profile.jsx';
 import PrivateRoute from './pages/PrivateRoute';
 import Navbar from './components/Navbar';
@@ -16,6 +16,8 @@ import Applicants from './pages/Applicants.jsx';
 import Validation from './pages/Validation.jsx';
 import Vendors from './pages/Vendors.jsx';
 import ProfileSettings from './pages/ProfileSettings.jsx';
+import Recruitment from './pages/Recruitment.jsx';
+import Tally from './pages/CreateTally.jsx';
 
 const App = () => {
 
@@ -46,7 +48,9 @@ const App = () => {
                             <Route element={<PrivateRoute />}>
                                 <Route path='/profile' element={<Profile />} />
                             </Route>
+                            <Route path='/create/tally' element={<Tally />} />
                             <Route path='/applicant/:id' element={<Applicant />} />
+                            <Route path='/recruitment' element={<Recruitment />}></Route>
                             <Route path='/validation' element={<Validation />}></Route>
                             <Route path='/profile-settings' element={<ProfileSettings />}></Route>
                             <Route path='*' element={<PageNotFound />} />

@@ -344,8 +344,8 @@ const UpdateApplicant = ({ applicant, onUpdateApplicant }) => {
                             />
                     </div>
                     <div className="flex justify-end gap-2 mt-6">
-                        <button className="bg-yellow-500 font-bold text-white rounded p-2 " type="submit">Update Applicant</button>
-                        <button className="bg-gray-500 font-bold text-white rounded p-2 " onClick={(e) => onUpdateApplicant()}>Cancel</button>
+                        <button className="bg-yellow-500 hover:bg-yellow-700 font-bold text-white rounded p-2 transition-colors duration-300" type="submit">Update Applicant</button>
+                        <button className="bg-gray-500 hover:bg-gray-700 font-bold text-white rounded p-2 transition-colors duration-300" onClick={(e) => onUpdateApplicant()}>Cancel</button>
                     </div>
                 </Form>
             </Formik>

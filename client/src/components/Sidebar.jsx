@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { FaCheck, FaCheckDouble, FaChevronLeft, FaGear, FaPerson } from 'react-icons/fa6';
 import ReactSVG from '../assets/react.svg';
-import { FaBox, FaCalendar, FaChartPie, FaFile, FaUser } from 'react-icons/fa';
+import { FaBox, FaChartPie, FaUser, FaPerson, FaCheck, FaCheckDouble, FaChevronLeft, } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -19,6 +18,11 @@ const Sidebar = ({ open, toggleOpen }) => {
             title: 'Applicants',
             link: '/applicants',
             icon: <FaPerson size={20} />
+        },
+        {
+            title: 'Recruitment',
+            link: '/recruitment',
+            icon: <FaCheck size={20} />,
         },
         {
             title: 'Vendors',
@@ -74,7 +78,7 @@ const Sidebar = ({ open, toggleOpen }) => {
                                     
                                 />
                             </div>
-                            <span className={`${!open && 'hidden'} duration-200 `}>Example John</span>
+                            {/* <span className={`${!open && 'hidden'} duration-200 `}>Example John</span> */}
                         </li>
                         }
                     </div>

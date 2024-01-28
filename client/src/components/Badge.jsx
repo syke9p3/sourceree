@@ -2,13 +2,22 @@ const Badge = ({ status, children }) => {
   let badgeColorClass = '';
 
   switch (status) {
-    case 'Active':
+    case 'Passed':
       badgeColorClass = 'bg-teal-500';
       break;
     case 'Warning':
       badgeColorClass = 'bg-yellow-500';
       break;
-    case 'Inactive':
+    case 'Rejected':
+      badgeColorClass = 'bg-red-500';
+      break;
+    case 'Pending':
+      badgeColorClass = 'bg-gray-400';
+      break;
+    case 'Engaged':
+      badgeColorClass = 'bg-green-500';
+      break;
+    case 'Expired':
       badgeColorClass = 'bg-red-500';
       break;
     default:
@@ -16,7 +25,7 @@ const Badge = ({ status, children }) => {
   }
 
   return (
-    <div className={`text-xs p-1 text-white font-semibold rounded-full ${badgeColorClass}`}>
+    <div className={`text-xs px-2 py-1 text-white font-semibold rounded-md ${badgeColorClass}`}>
       {children}
     </div>
   );

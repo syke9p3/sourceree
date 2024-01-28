@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 30, 2023 at 08:52 AM
+-- Generation Time: Jan 28, 2024 at 02:22 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -48,11 +48,6 @@ CREATE TABLE `applicants` (
   `bpoExpPosition` varchar(255) NOT NULL,
   `endorsementDate` date NOT NULL,
   `interviewTime` varchar(255) NOT NULL,
-  `clientCompany` varchar(255) NOT NULL,
-  `clientCompanySite` varchar(255) NOT NULL,
-  `applicantStatus` varchar(255) NOT NULL,
-  `agencyRemarks` varchar(255) DEFAULT NULL,
-  `clientCompanyRemarks` varchar(255) DEFAULT NULL,
   `resume` text NOT NULL,
   `userId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -61,10 +56,9 @@ CREATE TABLE `applicants` (
 -- Dumping data for table `applicants`
 --
 
-INSERT INTO `applicants` (`id`, `firstName`, `middleName`, `lastName`, `birthMonth`, `birthDay`, `birthYear`, `age`, `civilStatus`, `sex`, `contact`, `email`, `altEmail`, `homeAddress`, `highestEducationalAttainment`, `lastSchoolAttended`, `bpoExpYears`, `bpoExpPosition`, `endorsementDate`, `interviewTime`, `clientCompany`, `clientCompanySite`, `applicantStatus`, `agencyRemarks`, `clientCompanyRemarks`, `resume`, `userId`) VALUES
-(1, 'John', 'Doe', 'Smith', 'January', 15, 1990, 32, 'Married', 'Male', '123-456-7890', 'john.doe@example.com', 'john.alt@example.com', '123 Main Street, Cityville', 'Bachelor\'s Degree', 'University of City', 5, 'Customer Service Representative', '2023-01-20', '10:00 AM', 'ABC Tech Solutions', 'Tech Park', 'Active', 'Good communication skills', 'Needs further technical evaluation', 'resume_file.pdf', 1123),
-(6, 'Aliana', 'Jana', 'San', 'January', 1, 1991, 31, 'Married', 'Female', '123-456-7890', 'aliana@example.com', 'aliana.alt@example.com', '123 Main Street, Cityville', 'High School', 'University of City', 5, 'Customer Service Representative', '2023-01-20', '10:00 AM', 'ABC Tech Solutions', 'Tech Park', 'Active', 'Good communication skills', 'Needs further technical evaluation', 'resume_file.pdf', 1122),
-(8, 'Denise', 'Grizelle', 'Sayaang', 'December', 5, 2000, 23, 'Single', 'Female', '0938493729', 'dgs@gmail.com', 'dgssss@gmail.com', 'avv3wr', 'College Graduate', 'avrewa', 2, 'hdrhbrf', '2023-12-22', '11 AM', 'srhdr', 'hdtgj', 'Active-Pending', 'afswg', 'gegc', 'C:\\fakepath\\pup.png', 1123);
+INSERT INTO `applicants` (`id`, `firstName`, `middleName`, `lastName`, `birthMonth`, `birthDay`, `birthYear`, `age`, `civilStatus`, `sex`, `contact`, `email`, `altEmail`, `homeAddress`, `highestEducationalAttainment`, `lastSchoolAttended`, `bpoExpYears`, `bpoExpPosition`, `endorsementDate`, `interviewTime`, `resume`, `userId`) VALUES
+(1, 'Ria Denise', 'Saya-ang', 'Hamor', 'November', 11, 2002, 21, 'Single', 'Female', '0938493729', 'thesispasser@gmail.com', 'dgs@gmail.com', 'vgadvr', 'College Graduate', 'aff', 2, 'daeg', '2024-01-11', '11 AM', 'C:\\fakepath\\Sample Resume.pdf', 1123),
+(2, 'John', 'Doe', 'Swift', 'November', 8, 1991, 33, 'Married', 'Male', '0938493745', 'johndoe@gmail.com', 'jd@gmail.com', 'sadasf', 'College Graduate', 'fsefe', 2, 'csf', '2024-01-27', '12 PM', 'C:\\fakepath\\Sample Resume.pdf', 1123);
 
 -- --------------------------------------------------------
 
@@ -85,7 +79,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `userId`) VALUES
-(1, 'alice', 'alice@gmail.com', '$2a$10$PvSxaZj6JAIfclMC63q8VuWK80YYn0aaNP4f5GUtjyNG8wpifVbce', 1123);
+(1, 'Aliana ', 'ali@gmail.com', '$2a$10$rZpg59aN2gSx.ht45JkBZ.x2ySeeOyveiWXD7NbJJmPvIjJSBzmb2', 1123);
 
 --
 -- Indexes for dumped tables
@@ -114,7 +108,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `applicants`
 --
 ALTER TABLE `applicants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
